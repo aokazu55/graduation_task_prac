@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Win-Win!!!!!</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
+  <!-- 上記二行をbulmaのために記述。不要か必要かを見極める -->
+  <!-- 合わせて yarn add bulmaを実行した -->
+  <!-- アイコン表示用のCDN記述で対応可能なのか、参考サイトの記述と異なることが気になる -->
+  <script src="https://kit.fontawesome.com/c135f5a922.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <% if flash[:notice] %>
+  <div class="notification is-info">
+    <p class="notice"><%= notice %></p>
+  </div>
+  <% end %>
+
+  <% if flash[:alert] %>
+  <div class="notification is-danger">
+    <p class="alert"><%= alert %></p>
+  </div>
+  <% end %>
+
+  <header class="navbar">
+    <nav class="navbar" role="navigation" aria-label="main navigation"></nav>
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <%= link_to root_path, class: "navbar-item" do %>
+        <h1 class="title is-3" style="font-family: cursive;">win-win!!!!!</h1>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="navbar-item">
+      <div class="field has-addons">
+        <div class="control">
+          <input class="input" type="text" name="search" placeholder="キーワード検索">
+        </div>
+        <div class="control">
+          <a class="button is-info"><i class="fa fa-search"></i>検索</a>
+        </div>
+      </div>
+    </div>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+      data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+
+    <% if user_signed_in? %>
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <div class="navbar-item">
+          <%= link_to "サービス投稿", new_service_path, method: :get, class: "button is-info is-rounded" %>
+        </div>
+
+        <div class="navbar-item">
+          <%= link_to "マイページ", user_path(current_user), class: "button is-info is-rounded" %>
+        </div>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "button is-info is-rounded" %>
+        </div>
+      </div>
+    </div>
+
+    <% else %>
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-item">
+        <%= link_to "ログイン", new_user_session_path, class: "button is-info is-rounded" %>
+      </div>
+
+      <div class="navbar-item">
+        <%= link_to "新規登録", new_user_registration_path, class: "button is-info is-rounded" %>
+      </div>
+    </div>
+    <% end %>
+    </nav>
+  </header>
+  <!-- メイン部分 -->
+  <div class="hero is-info is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">WIN-WIN !!!!!</h1>
+        <h2 class="subtitle">あなたのスキルで誰かが喜ぶ。そして、あなたはやりがいを得る。それが「win-win!!!!!」です。</h2>
+      </div>
+    </div>
+  </div>
+  <!-- 使うかどうか検討中 -->
+  <!-- <section class="level">
+      <div class="level-left"></div>
+      <div class="level-right">
+        <div class="level-item tabs">
+          <ul>
+            <li class="is-active">
+              <%= link_to "お気に入り", "#" %>
+            </li>
+            <li>
+              <%= link_to "ウォッチリスト", "#" %>
+            </li>
+            <li>
+              <%= link_to "下書き", "#" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="level-right">
+        <div class="level-item">
+          <%= link_to "コメントチェック", "#", class: "button is-light" %>
+        </div>
+      </div>
+    </section> -->
+  <!-- サイドバー（商品検索はここでやりたいかな・・・） -->
+  <main class="columns">
+    <div class="submenu column is-2">
+      <!-- <aside class="box">
+          カサレアルは、ＸＸＸＸＸＸＸＸを実現する会社です。私たちは△△△△△△△△を通じて社会に貢献していきます。
+        </aside> -->
+
+      <aside class="box menu">
+        <p class="menu-label">
+          （仮）おすすめ情報
+        </p>
+        <ul class="menu-list">
+          <li><a href="#">売れ筋情報<small>@uresugi</small></a></li>
+          <li><a href="#">喜びの声<small>@voice</small></a></li>
+          <li><a href="#">おすすめ<small>@recommendation</small></a></li>
+        </ul>
+
+        <p class="menu-label">
+          キーワード
+        </p>
+        <ul class="menu-list">
+          <li><a href="#">ウォッチリスト</a></li>
+          <li><a class="is-active" href="#">お気に入り</a>
+            <ul>
+              <li><a href="#">サービス</a></li>
+              <li><a href="#">ユーザー</a></li>
+            </ul>
+          </li>
+          <li><a href="#">プロフィール</a></li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="column">
+      <article class="box media">
+        <div class="media-content">
+          <%= yield %>
+          <%= javascript_pack_tag "application" %>
+        </div>
+      </article>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        2020 ©dic_aokazu
+      </div>
+    </div>
+  </footer>
+
+  <script type="text/javascript">
+    document.querySelector('.navbar-burger').addEventListener("click", toggleNav);
+
+    function toggleNav() {
+      var nav = document.querySelector('.navbar-menu');
+      if (nav.className == "navbar-menu") {
+        nav.className = "navbar-menu is-active";
+      } else {
+        nav.className = "navbar-menu";
+      }
+    }
+  </script>
+</body>
+
+</html>

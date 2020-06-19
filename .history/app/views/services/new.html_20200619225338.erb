@@ -1,0 +1,65 @@
+<div class="action-header">
+	<div class="action-name">
+		<p>【サービス登録】</p>
+	</div>
+
+	<div class="action-detail">
+		<p>・各サービス情報をクリックし入力しましょう。</p>
+		<p>・登録完了後に内容の修正は出来ます。</p>
+		<p>・必須情報以外は入力不問ですが、情報が多い方が取引につながりやすいです。</p>
+		<p>・サービスは出品後に取り消す事が出来ます。</p>
+	</div>
+</div>
+
+<section class="section">
+	<div class="container">
+		<div class="columns is-centered">
+			<div class="column is-6">
+				<%= form_for @service do |f| %>
+				<div class="field">
+					<%= f.label :service_name, "サービス名", class: "label" %>
+					<%= f.text_field :service_name, class: "input" %>
+				</div>
+
+				<div class="field">
+					<%= f.label :price, "金額", class: "label" %>
+					<%= f.text_field :price, class: "input" %>
+				</div>
+
+				<div class="field">
+					<%= f.label :working_time, "サービス提供時間", class: "label" %>
+					<%= f.text_field :working_time, class: "input" %>
+				</div>
+
+				<div class="field">
+					<%= f.label :remark, "備考", class: "label" %>
+					<%= f.text_area :remark, class: "textarea" %>
+				</div>
+
+				<div class="field">
+					<%= f.label :period_start, "サービス提供開始日", class: "label" %>
+					<%= f.collection_select :period_start, use_month_numbers: true, start_year: 1910, end_year: (Time.now.year - 10), default: Date.new(1970, 1, 1), class: "input" %>
+				</div>
+
+				<div class="field">
+					<%= f.label :period_end, "サービス提供終了日", class: "label" %>
+					<%= f.collection_select :period_end, class: "input" %>
+				</div>
+
+				<div class="field">
+					<%= f.label :estimated_days_required, "サービス完了日数の目安", class: "label" %>
+					<%= f.text_field :estimated_days_required, class: "input" %>
+				</div>
+
+
+				<div class="field">
+					<%= f.label :image, "写真", class: "label" %>
+					<%= f.attachment_field :image, class: "control" %>
+				</div>
+
+				<%= f.submit '投稿', class: "button is-info" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</section>

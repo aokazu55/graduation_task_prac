@@ -1,0 +1,52 @@
+<div class="action-header">
+	<div class="action-name">
+		<p>【プロフィール登録】</p>
+	</div>
+
+	<div class="action-detail">
+		<p>・プロフィール情報登録は任意です。</p>
+		<p>・プロフィールは登録後に変更が可能です。</p>
+		<p>・必須情報以外は入力不問ですが、情報が多い方が取引につながりやすいです。</p>
+	</div>
+</div>
+
+<section class="section">
+	<div class="container">
+		<div class="columns is-centered">
+			<div class="column is-6">
+				<%= form_for @profile do |f| %>
+				<div class="field">
+					<%= f.label :nickname, "ニックネーム", class: "label" %>
+					<%= f.text_field :nickname, class: "input" %>
+				</div>
+
+				<div class="field">
+					<%= f.label :date_of_birth, "誕生日", class: "label" %>
+					<%= f.select :date_of_birth, class: "input" %>
+				</div>
+
+
+
+				<div class="field">
+					<%= f.label :address_id, "住所", class: "label" %>
+					<%= f.collection_select :address_id, Address.all, :id, :name,  {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
+				</div>
+
+				<div class="field">
+					<%= f.label :personality_id, "性格", class: "label" %>
+					<%= f.collection_select :personality_id, Personality.all, :id, :name,  {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
+				</div>
+
+
+
+				<div class="field">
+					<%= f.label :introduce, "自己紹介", class: "label" %>
+					<%= f.text_area :introduce, class: "input" %>
+				</div>
+
+				<%= f.submit '登録', class: "button is-info" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</section>

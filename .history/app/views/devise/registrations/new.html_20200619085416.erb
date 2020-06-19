@@ -1,0 +1,88 @@
+<div class="action-header">
+  <div class="action-name">
+    <p>【新規会員登録】</p>
+  </div>
+
+  <div class="action-detail">
+    <p>・会員登録時に入力したemailアドレス、パスワードを入力して下さい。</p>
+    <p>・出品や購入を行うためには、会員登録およびログインが必要です。</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-5">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+
+        <div class="field">
+          <%= f.label :name, class: "label" %>
+          <p class="control has-icons-left">
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", :placeholder => "name", class: "input" %>
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </p>
+        </div>
+
+        <div class="field">
+          <%= f.label :email, class: "label" %>
+          <p class="control has-icons-left">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "email", class: "input" %>
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </p>
+        </div>
+
+        <div class="field">
+          <%= f.label :password, class: "label" %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+          <p class="control has-icons-left">
+            <%= f.password_field :password, autocomplete: "new-password", :placeholder => "password", class: "input" %>
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </p>
+        </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation, class: "label" %>
+          <p class="control has-icons-left">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", :placeholder => "password confirmation", class: "input" %>
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </p>
+        </div>
+
+        <!-- %main.signup-main
+%section.signup-main__container
+%h2.signup-main__head.signup-main__head--registration
+新規会員登録
+.signup-main__inner.signup-main__inner--registration-form
+.signup-main__content
+= link_to '/signup/registration', class: 'signup-main__btn-default signup-main__btn-mail' do
+= icon 'far', 'envelope'
+メールアドレスで登録する
+%button.signup-main__btn-default.signup-main__btn-sns.signup-main__btn-sns--facebook{ id: 'signup-main__facebook-login'
+}
+= icon 'fab', 'facebook-square'
+Facebookで登録する
+%button.signup-main__btn-default.signup-main__btn-sns.signup-main__btn-sns--google{ id: 'signup-main__google-login' }
+Googleで登録する
+%form -->
+        <div class="actions">
+          <%= f.submit "Sign up", class: "button is-info" %>
+        </div>
+        <% end %>
+
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</section>

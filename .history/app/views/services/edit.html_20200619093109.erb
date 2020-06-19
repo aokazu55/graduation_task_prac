@@ -1,0 +1,78 @@
+<% if @service.errors.any? %>
+<div class="notification is-danger">
+	<h2><%= pluralize(@service.errors.count, "error") %> prohibited this object from being saved: not successfully</h2>
+	<ul>
+		<% @service.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
+<div class="action-header">
+	<div class="action-name">
+		<p>【サービス編集】</p>
+	</div>
+
+	<div class="action-detail">
+		<p>・編集したい部分をクリックしましょう。</p>
+		<p>・編集が完了したら投稿をクリックしましょう。</p>
+	</div>
+
+	<div class="action-option">
+		<a>Like</a> · <a>Reply</a> · 3 hrs
+	</div>
+</div>
+
+<section class="section">
+	<div class="container">
+		<div class="columns is-centered">
+			<div class="column is-6">
+				<%= form_for @service do |f| %>
+				<div class="field">
+					<%= f.label :service_name, "サービス名", class: "label" %>
+					<%= f.text_field :main_service, class: "input" %>
+				</div>
+
+				<div class="field">
+					<%= f.label :price, "金額", class: "label" %>
+					<%= f.text_field :price, class: "input" %>
+				</div>
+
+				<div class="field">
+					<%= f.label :working_time, "サービス提供時間", class: "label" %>
+					<%= f.text_field :working_time, class: "input" %>
+				</div>
+
+				<div class="field">
+					<%= f.label :remark, "備考", class: "label" %>
+					<%= f.text_area :remark, class: "textarea" %>
+				</div>
+
+				<div class="field">
+					<%= f.label :period_start, "サービス提供開始日", class: "label" %>
+					<%= f.text_field :period_start, class: "input" %>
+				</div>
+
+				<div class="field">
+					<%= f.label :period_end, "サービス提供終了日", class: "label" %>
+					<%= f.text_field :period_end, class: "input" %>
+				</div>
+
+				<div class="field">
+					<%= f.label :estimated_days_required, "サービス完了日数の目安", class: "label" %>
+					<%= f.text_field :estimated_days_required, class: "input" %>
+				</div>
+
+
+				<div class="field">
+					<%= f.label :image, "写真", class: "label" %>
+					<%= f.attachment_field :image, class: "input" %>
+				</div>
+
+				<%= f.submit '投稿', class: "button is-info" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</section>
